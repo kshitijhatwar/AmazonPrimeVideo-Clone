@@ -1,0 +1,9 @@
+import jenkins.model.*
+import hudson.security.*
+
+def instance = Jenkins.getInstance()
+def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+hudsonRealm.createAccount("admin2","NewStrongPassword123")
+instance.setSecurityRealm(hudsonRealm)
+instance.save()
+println("Created new admin user: admin2 / Pass@123")
