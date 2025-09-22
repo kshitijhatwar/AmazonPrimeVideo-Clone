@@ -51,20 +51,22 @@ pipeline {
         
         stage('6. Build Docker Image') {
             steps {
-                sh "docker build -t kshitijhatwar/AmazonePrimeVideoClone:v1.$BUILD_ID ."
-                sh "docker build -t kshitijhatwar/AmazonePrimeVideoClone:latest ."
+                sh "docker build -t kshitijhatwar/amazoneprimevideoclone:v1.$BUILD_ID ."
+                sh "docker build -t kshitijhatwar/amazoneprimevideoclone:latest ."
             }
         }
         
         
         stage('7. Push Image to dockerhub') {
             steps{
-                withCredentials([string(credentialsId: 'docker-token', variable: 'docker-tok')]) {
-                sh "docker login -u kshitijhatwar -p ${docker-tok}"
-                sh "docker image push kshitijhatwar/AmazonePrimeVideoClone:v1.$BUILD_ID"
-                sh "docker image push kshitijhatwar/AmazonePrimeVideoClone:latest"
-                sh "docker rmi AmazonePrimeVideoClone:v1.$BUILD_ID kshitijhatwar/AmazonePrimeVideoClone:v1.$BUILD_ID kshitijhatwar/AmazonePrimeVideoClone:latest"
+                withCredentials([string(credentialsId: 'docker-token', variable: 'docker_tok')]) {
+                sh 'echo "Docker token length: ${#docker_tok}"'
+                sh "docker login -u kshitijhatwar -p ${docker_tok}"
+                sh "docker image push kshitijhatwar/amazoneprimevideoclone:v1.$BUILD_ID"
+                sh "docker image push kshitijhatwar/amazoneprimevideoclone:latest"
+                sh "docker rmi kshitijhatwar/amazoneprimevideoclone:v1.$BUILD_ID kshitijhatwar/amazoneprimevideoclone:latest"
                 }
         }
     }
+}
 }

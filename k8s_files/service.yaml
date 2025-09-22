@@ -2,16 +2,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pandacloud-app
+  name: amazonprinevideo-app
   labels:
-    app: pandacloud-app
+    app: amazonprinevideo-app
 spec:
   ports:
   - name: http
     port: 3000
     protocol: TCP
     targetPort: 3000
+    nodePort: 32005
   selector:
-    app: pandacloud-app
-  type: LoadBalancer
+    app: amazonprinevideo-app
+  type: NodePort
 ...
