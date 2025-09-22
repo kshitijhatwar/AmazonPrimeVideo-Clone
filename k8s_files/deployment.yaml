@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: amazonprinevideo-app
+  name: amazonprimevideo-app
   labels:
-    app: amazonprinevideo-app
+    app: amazonprimevideo-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: amazonprinevideo-app
+      app: amazonprimevideo-app
   template:
     metadata:
       labels:
-        app: amazonprinevideo-app
+        app: amazonprimevideo-app
     spec:
       containers:
-      - name: amazonprinevideo-container
-        image: amazoneprimevideoclone:latest
+      - name: amazonprimevideo-container
+        image: kshitijhatwar/amazoneprimevideoclone:latest
         ports:
         - containerPort: 3000
 ...
